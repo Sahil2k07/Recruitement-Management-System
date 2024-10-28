@@ -42,7 +42,7 @@ model Job {
   Title          String
   Description    String
   PostedOn       DateTime @default(now())
-  TotalApplicant Int
+  TotalApplicans Int      @default(0)
   CompanyName    String
   PostedBy       User     @relation(fields: [PostedById], references: [Id])
   PostedById     String
