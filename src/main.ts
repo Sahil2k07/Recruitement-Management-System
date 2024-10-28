@@ -4,11 +4,13 @@ import dotenv from "dotenv";
 import userRouter from "./routes/user.routes";
 import adminRouter from "./routes/admin.routes";
 import jobRouter from "./routes/job.routes";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(
   cors({
