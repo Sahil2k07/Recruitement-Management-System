@@ -56,11 +56,17 @@ class UserController implements UserRoutes {
     try {
       const { Email, Password } = loginSchema.parse(req.body);
 
-      const data = await this.userService.login(Email, Password);
+      const { token, data } = await this.userService.login(Email, Password);
+
+      res.cookie("token", token, {
+        maxAge: 3 * 24 * 60 * 60 * 1000,
+        secure: true,
+      });
 
       return res.status(200).json({
         success: true,
         message: "Login successfull",
+        token,
         data,
       });
     } catch (e) {
